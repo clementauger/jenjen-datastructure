@@ -7,7 +7,8 @@ A repository that exposes templates to generate faster datastructure.
 Generates a heap.
 
 ```sh
-jenjen -template=github.com/clementauger/jenjen-datastructure/heap - "U => -, T => -, Heap=>MinIntHeap , MinIntHeap:U=>int, MinIntHeap:T=> minInt"
+jenjen -template=github.com/clementauger/jenjen-datastructure/heap \
+  - "U => -, T => -, Heap=>MinIntHeap , MinIntHeap:U=>int, MinIntHeap:T=> minInt"
 ```
 
 You must provide a type that implements a `type Lesser { Less(_ T) bool }`, for example :
