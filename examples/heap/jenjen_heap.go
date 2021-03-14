@@ -35,8 +35,8 @@ func (s MinIntHeap) Swap(i, j int) {
 
 // Push pushes the element x onto the heap.
 // The complexity is O(log n) where n = h.Len().
-func (s MinIntHeap) Push(x minInt) MinIntHeap {
-	s = append(s, x)
+func (s MinIntHeap) Push(x int) MinIntHeap {
+	s = append(s, minInt(x))
 	s.up(len(s) - 1)
 	return s
 }
@@ -52,9 +52,9 @@ func (s MinIntHeap) Pop() (int, MinIntHeap) {
 	s = s[:n]
 	return int(res), s
 }
-func (s MinIntHeap) Peek() (def int, ok bool) {
+func (s MinIntHeap) Peek() (top int, ok bool) {
 	if len(s) > 0 {
-		def = int(s[0])
+		top = int(s[0])
 		ok = true
 	}
 	return

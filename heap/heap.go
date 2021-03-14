@@ -43,8 +43,8 @@ func (s Heap) Swap(i, j int) {
 
 // Push pushes the element x onto the heap.
 // The complexity is O(log n) where n = h.Len().
-func (s Heap) Push(x T) Heap {
-	s = append(s, x)
+func (s Heap) Push(x U) Heap {
+	s = append(s, T(x))
 	s.up(len(s) - 1)
 	return s
 }

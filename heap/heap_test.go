@@ -45,7 +45,7 @@ func TestInit0(t *testing.T) {
 func TestInit1(t *testing.T) {
 	var h Heap
 	for i := 20; i > 0; i-- {
-		h = h.Push(T(i)) // all elements are different
+		h = h.Push(U(i)) // all elements are different
 	}
 	h = h.Init()
 	h.verify(t, 0)
@@ -62,19 +62,19 @@ func Test(t *testing.T) {
 	var h Heap
 	h.verify(t, 0)
 	for i := 20; i > 10; i-- {
-		h = h.Push(T(i))
+		h = h.Push(U(i))
 	}
 	h = h.Init()
 	h.verify(t, 0)
 	for i := 10; i > 0; i-- {
-		h = h.Push(T(i))
+		h = h.Push(U(i))
 		h.verify(t, 0)
 	}
 	for i := 1; h.Len() > 0; i++ {
 		var x U
 		x, h = h.Pop()
 		if i < 20 {
-			h = h.Push(T(20 + i))
+			h = h.Push(U(20 + i))
 		}
 		h.verify(t, 0)
 		if int(x) != i {
@@ -85,7 +85,7 @@ func Test(t *testing.T) {
 func TestRemove0(t *testing.T) {
 	var h Heap
 	for i := 0; i < 10; i++ {
-		h = h.Push(T(i))
+		h = h.Push(U(i))
 	}
 	h.verify(t, 0)
 	for h.Len() > 0 {
@@ -101,7 +101,7 @@ func TestRemove0(t *testing.T) {
 func TestRemove1(t *testing.T) {
 	var h Heap
 	for i := 0; i < 10; i++ {
-		h = h.Push(T(i))
+		h = h.Push(U(i))
 	}
 	h.verify(t, 0)
 	for i := 0; h.Len() > 0; i++ {
@@ -117,7 +117,7 @@ func TestRemove2(t *testing.T) {
 	N := 10
 	var h Heap
 	for i := 0; i < N; i++ {
-		h = h.Push(T(i))
+		h = h.Push(U(i))
 	}
 	h.verify(t, 0)
 	m := make(map[int]bool)
@@ -152,7 +152,7 @@ func TestFix(t *testing.T) {
 	var h Heap
 	h.verify(t, 0)
 	for i := 200; i > 0; i -= 10 {
-		h = h.Push(T(i))
+		h = h.Push(U(i))
 	}
 	h.verify(t, 0)
 	if h[0] != 10 {
