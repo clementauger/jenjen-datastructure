@@ -5,12 +5,25 @@ import (
 	"testing"
 )
 
-func BenchmarkMinIntHeap(b *testing.B) {
+func BenchmarkMinIntHeapDup(b *testing.B) {
 	const n = 10000
 	h := make(MinIntHeap, 0, n)
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < n; j++ {
 			h = h.Push(0)
+		}
+		for h.Len() > 0 {
+			_, h = h.Pop()
+		}
+	}
+}
+
+func BenchmarkMinIntHeapNoDup(b *testing.B) {
+	const n = 10000
+	h := make(MinIntHeap, 0, n)
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			h = h.Push(j)
 		}
 		for h.Len() > 0 {
 			_, h = h.Pop()
@@ -38,12 +51,25 @@ func (h *regularHeap) Pop() interface{} {
 	return x
 }
 
-func BenchmarkRegularHeap(b *testing.B) {
+func BenchmarkRegularHeapDup(b *testing.B) {
 	const n = 10000
 	h := make(regularHeap, 0, n)
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < n; j++ {
 			goheap.Push(&h, 0) // all elements are the same
+		}
+		for h.Len() > 0 {
+			goheap.Pop(&h)
+		}
+	}
+}
+
+func BenchmarkRegularHeapNoDup(b *testing.B) {
+	const n = 10000
+	h := make(regularHeap, 0, n)
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			goheap.Push(&h, j) // all elements are the same
 		}
 		for h.Len() > 0 {
 			goheap.Pop(&h)
